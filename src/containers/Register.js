@@ -2,8 +2,11 @@ import { useState } from "react";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import register from '../actions/User';
+import { useNavigate } from 'react-router-dom';
 
 function Register(props) {
+
+    const navigate = useNavigate();
 
     const [registerDetails, setRegisterDetails] = useState(
         {
@@ -11,7 +14,12 @@ function Register(props) {
             password: "",
             email: ""
         }
-    )
+    );
+    if (props.token) {
+        console.log(props.token);
+        navigate("/dashboard");
+
+    }
     const updateValues = (event) => {
         var value = event.target.value;
         var name = event.target.name;
@@ -64,6 +72,16 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({ register: register }, dispatch);
 }
 
+function mapStateToProps(appState) {
 
-export default connect(null, mapDispatchToProps)(Register);
+    console.log("appState", appState);
+    return { token: appState.accessToken };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register);
+
+// export default connect((appState) => {
+//     console.log("appState", appState);
+//     return { token: appState.accessToken };
+// }, mapDispatchToProps)(Register);
 
