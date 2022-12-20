@@ -1,9 +1,78 @@
-function Login() {
+import { useState } from "react";
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { login } from '../actions/User';
+import { useNavigate } from 'react-router-dom';
+
+function Login(props) {
+
+    const navigate = useNavigate();
+
+    const [loginDetails, setLoginDetails] = useState(
+        {
+            username: "",
+            password: "",
+        }
+    );
+    if (props.token) {
+        console.log(props.token);
+        navigate("/dashboard");
+
+    }
+    const updateValues = (event) => {
+        var value = event.target.value;
+        var name = event.target.name;
+        setLoginDetails({ ...loginDetails, [name]: value })
+    }
+    const loginUser = (event) => {
+        event.preventDefault();
+        console.log(loginDetails);
+        props.login(loginDetails);
+    }
     return (
         <>
-            <h1>I am in login</h1>
+            <form>
+                <br></br>   <br></br>    <br></br>
+                <div>
+                    <h2 style={{ textAlign: "center" }}>Login Here</h2>
+
+                    <hr></hr>
+                    <br></br><br></br>
+                    <div className="row">
+                        <div className="col">
+                            <input type="text" onChange={updateValues} className="form-control" placeholder="Enter username" name="username" />
+                        </div>
+                        <div className="col">
+                            <input type="password" onChange={updateValues} className="form-control" placeholder="Enter password" name="password" />
+                        </div>
+                    </div>  <br></br>
+                    <div className="row">
+                        <div className="col">
+                            <button onClick={loginUser} className="btn btn-success">Login</button>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
         </>
     )
 
 }
-export default Login;
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ login: login }, dispatch);
+}
+
+function mapStateToProps(appState) {
+
+    console.log("appState", appState);
+    return { token: appState.accessToken };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
+
+// export default connect((appState) => {
+//     console.log("appState", appState);
+//     return { token: appState.accessToken };
+// }, mapDispatchToProps)(Register);
+

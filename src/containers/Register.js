@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import register from '../actions/User';
+import { register } from '../actions/User';
 import { useNavigate } from 'react-router-dom';
 
 function Register(props) {
