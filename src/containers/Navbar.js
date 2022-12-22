@@ -21,6 +21,12 @@ function Navbar(props) {
 
     //     //  navigate("/login");
     // }
+
+    /*
+      Sync time: 
+
+    */
+
     const logout = () => {
         props.logout();
     }
