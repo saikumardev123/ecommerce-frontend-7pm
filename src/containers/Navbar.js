@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { logout } from '../actions/User';
 import { bindActionCreators } from 'redux';
 import { useEffect } from 'react';
+import Home from '../components/Home';
 
 function Navbar(props) {
     const navigate = useNavigate();
@@ -22,21 +23,16 @@ function Navbar(props) {
     //     //  navigate("/login");
     // }
 
-    /*
-      Sync time: 
-
-    */
-
     const logout = () => {
         props.logout();
     }
 
-    useEffect(() => {
-        console.log("I am in use effect");
-        if (!props.token) {
-            navigate("/login");
-        }
-    }, []);
+    // useEffect(() => {
+    //     console.log("I am in use effect");
+    //     if (!props.token) {
+    //         navigate("/login");
+    //     }
+    // }, []);
 
 
     return (
@@ -69,7 +65,7 @@ function Navbar(props) {
             </nav>
 
             <Routes>
-
+                <Route path="/" element={<Home></Home>}></Route>
                 <Route path="/register" element={<Register></Register>}></Route>
                 <Route path="/login" element={<Login></Login>}></Route>
                 <Route path="/contact_us" element={<ContactUs></ContactUs>}></Route>

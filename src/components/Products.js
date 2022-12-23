@@ -26,10 +26,11 @@ function Products() {
                     alert("Product added successfully!");
                     showProducts();
                 }
+            },
+            error => {
 
             }
         )
-
     }
     useEffect(() => {
         showProducts();

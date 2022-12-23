@@ -3,6 +3,7 @@ import './App.css';
 import Navbar from './containers/Navbar';
 import { BrowserRouter } from 'react-router-dom';
 import Products from './components/Products';
+import ProductDetails from './components/ProductDetails';
 
 function App() {
   return (
@@ -11,7 +12,9 @@ function App() {
         <Navbar></Navbar>
       </BrowserRouter> */}
 
-      <Products></Products>
+      <ProductDetails></ProductDetails>
+
+      {/* <Products></Products> */}
 
     </>
   );
