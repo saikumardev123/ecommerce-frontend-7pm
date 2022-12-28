@@ -2,11 +2,14 @@ import { useState } from "react";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { login } from '../actions/User';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+
 
 function Login(props) {
 
     const navigate = useNavigate();
+
+    const location = useLocation();
 
     const [loginDetails, setLoginDetails] = useState(
         {
@@ -37,6 +40,7 @@ function Login(props) {
                     <h2 style={{ textAlign: "center" }}>Login Here</h2>
 
                     <hr></hr>
+                    <h3 style={{ color: "red", textAlign: "center" }}>{location.state != null ? location.state.message : ''}</h3>
                     <br></br><br></br>
                     <div className="row">
                         <div className="col">

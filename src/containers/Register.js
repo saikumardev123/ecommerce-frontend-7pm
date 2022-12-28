@@ -32,6 +32,8 @@ function Register(props) {
     }
     return (
         <>
+
+            
             <form>
                 <br></br>   <br></br>    <br></br>
                 <div>

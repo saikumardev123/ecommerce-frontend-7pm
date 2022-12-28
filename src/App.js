@@ -8,11 +8,11 @@ import ProductDetails from './components/ProductDetails';
 function App() {
   return (
     <>
-      {/* <BrowserRouter>
+      <BrowserRouter>
         <Navbar></Navbar>
-      </BrowserRouter> */}
+      </BrowserRouter>
 
-      <ProductDetails></ProductDetails>
+      {/* <ProductDetails></ProductDetails> */}
 
       {/* <Products></Products> */}
 

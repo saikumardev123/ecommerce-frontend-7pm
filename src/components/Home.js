@@ -1,12 +1,21 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 function Home() {
 
     const [products, setProducts] = useState([]);
 
+    const navigate = useNavigate();
+
     useEffect(() => {
         getProducts();
     }, [])
+
+    const showProduct = (product) => {
+        console.log("product", product);
+        navigate('/productdetails', { state: product });
+
+    }
 
     const getProducts = () => {
 
@@ -40,9 +49,9 @@ function Home() {
                             <i class="fas fa-star"></i>
                             <i class="far fa-star"></i>
                         </div>
-                        <a class="text-reset" href="#"><h3>{product.name}</h3></a>
+                        <h3 onClick={() => showProduct(product)} style={{ cursor: "pointer", textDecoration: "underline" }}>{product.name}</h3>
                         <h6>{product.price}</h6>
-                        <a class="btn btn-dark my-2" href="#" role="button">Add to Cart</a>
+                        <button onClick={() => navigate('/login', { state: { message: 'please login to continue' } })} class="btn btn-dark my-2" href="#" role="button">Add to Cart</button>
                     </div>
                 </div>
             </div>
