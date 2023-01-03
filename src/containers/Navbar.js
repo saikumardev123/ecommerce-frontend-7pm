@@ -11,6 +11,7 @@ import { useEffect } from 'react';
 import Home from '../components/Home';
 import ProductDetails from '../components/ProductDetails';
 import Cart from '../components/Cart';
+import Checkout from '../containers/Checkout';
 
 function Navbar(props) {
     const navigate = useNavigate();
@@ -26,7 +27,10 @@ function Navbar(props) {
     // }
 
     const logout = () => {
-        props.logout();
+        alert("logout called");
+        localStorage.removeItem("token");
+        navigate("/login");
+
     }
 
     // useEffect(() => {
@@ -46,7 +50,7 @@ function Navbar(props) {
                     <div className="collapse navbar-collapse" id="collapsibleNavbar">
                         <ul className="navbar-nav">
                             {
-                                props.token ? <> <li className="nav-item">
+                                localStorage.getItem("token") != null ? <> <li className="nav-item">
                                     <Link className="nav-link" onClick={logout}>Logout</Link>
                                 </li> <li className="nav-item float-end">
                                         <Link className="nav-link" to="/cart"> <i className="fa fa-shopping-cart" style={{ fontSize: "20px", color: "white" }}></i></Link>
@@ -72,6 +76,7 @@ function Navbar(props) {
                 <Route path="/dashboard" element={<Dashboard></Dashboard>}></Route>
                 <Route path="/productdetails" element={<ProductDetails></ProductDetails>}></Route>
                 <Route path="/cart" element={<Cart></Cart>}></Route>
+                <Route path="/checkout" element={<Checkout></Checkout>}></Route>
             </Routes>
         </>
     )

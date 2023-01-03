@@ -69,7 +69,9 @@ function Dashboard(props) {
                         </div>
                         <h3 onClick={() => showProduct(product)} style={{ cursor: "pointer", textDecoration: "underline" }}>{product.name}</h3>
                         <h6>{product.price}</h6>
+
                         <button class="btn btn-dark my-2" href="#" onClick={() => addToCart(product)} role="button">Add to Cart</button>
+
                     </div>
                 </div>
             </div>
@@ -101,3 +103,21 @@ function mapStateToProps(appState) {
 }
 
 export default connect(mapStateToProps, null)(Dashboard);
+
+
+/*
+
+
+1. User role based authentication ( customer, admin) -  Sai /majeed
+
+2. proper navigation between login and logout (swamy) / datta
+
+3. form validations - Veeru / Niha
+
+
+
+
+
+
+
+*/

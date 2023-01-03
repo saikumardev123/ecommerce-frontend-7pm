@@ -1,14 +1,19 @@
 import './Cart.css';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 function Cart() {
-
+    var finalAmount = 0;
+    const navigate = useNavigate();
     const [update, updateState] = useState(true);
+    const [amount, setAmount] = useState(0);
 
     const getCartItems = () => {
         var cartItems = JSON.parse(localStorage.getItem("cart"));
         console.log("cartItems", cartItems);
         let cartItemsList = cartItems.map((cartItem) => {
+            finalAmount = finalAmount + cartItem.price;
             return <div className="cart-item d-md-flex justify-content-between"><span className="remove-item" onClick={() => removeItemFromCart(cartItem._id)}><i className="fa fa-times"></i></span>
                 <div className="px-3 my-3">
                     <a className="cart-item-product" href="#" >
@@ -37,6 +42,10 @@ function Cart() {
 
             </div>
         })
+        console.log("finalAmount", finalAmount);
+
+        localStorage.setItem("finalAmount", finalAmount);
+        // setAmount(finalAmount);
         return cartItemsList;
     }
     const removeItemFromCart = (_id) => {
@@ -62,7 +71,7 @@ function Cart() {
 
                 <div className="row pt-3 pb-5 mb-2">
                     <div className="col-sm-6 mb-3"><a className="btn btn-style-1 btn-secondary btn-block" href="#"><i className="fe-icon-refresh-ccw"></i>&nbsp;Update Cart</a></div>
-                    <div className="col-sm-6 mb-3"><a className="btn btn-style-1 btn-primary btn-block" href="checkout-address.html"><i className="fe-icon-credit-card"></i>&nbsp;Checkout</a></div>
+                    <div className="col-sm-6 mb-3"><a className="btn btn-style-1 btn-primary btn-block" onClick={() => navigate("/checkout")}><i className="fe-icon-credit-card"></i>&nbsp;Checkout</a></div>
                 </div>
 
 
